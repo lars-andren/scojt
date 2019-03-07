@@ -3,14 +3,16 @@
  */
 
 var http = require('http');
+const express = require('express');
+const path = require('path');
 
+const server = express();
 
-var server = http.createServer(function(req, res) {
+server.set('views', path.join(__dirname, 'views'));
+server.set('view engine', 'pug');
 
-  res.writeHead(200);
-
-  res.end('Hi everybody!');
-
+server.get('/', function(req, res){
+  res.render('index');
 });
 
 server.listen(8080);
